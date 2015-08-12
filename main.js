@@ -7,7 +7,6 @@ module.exports.clone        = clone;
 module.exports.merge        = merge;
 module.exports.inherit      = inherit;
 module.exports.compare      = compare;
-module.exports.Lock         = require ('./lib/Lock');
 
 
 /**     @property/Function getTypeStr
