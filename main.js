@@ -142,7 +142,7 @@ function compare (objA, objB) {
             else
                 return false;
         if (aType == 'array')
-            if (itemA.length != itemB.length || compareArrays (itemA, itemB))
+            if (itemA.length != itemB.length || !compareArrays (itemA, itemB))
                 return false;
             else
                 continue;
@@ -165,11 +165,12 @@ function compareArrays (arrA, arrB) {
             else
                 return false;
         if (aType == 'array')
-            if (itemA.length != itemB.length || compareArrays (itemA, itemB))
+            if (itemA.length != itemB.length || !compareArrays (itemA, itemB))
                 return false;
             else
                 continue;
         if (itemA !== itemB)
             return false;
     }
+    return true;
 }
