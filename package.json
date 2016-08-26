@@ -1,5 +1,8 @@
 {
     "name":     "filth",
-    "version":  "0.0.2",
+    "version":  "0.1.0",
+    "license":  "MIT",
+    "description": "Yet another simple tools library.",
+    "author":   "Kevin \"Schmidty\" Smith <shenanigans@kaztl.com>",
     "main":     "main.js"
 }
