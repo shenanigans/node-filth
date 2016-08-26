@@ -14,6 +14,9 @@ $ npm install filth
 
 Usage
 -----
+See [the API Documentation](http://shenanigans.github.io/node-filth/docs/module/filth/index.html)
+for more information.
+
 Create an Object that can safely be used as a hash table.
 ```javascript
 var filth = require ('filth');
@@ -111,7 +114,7 @@ async.each (tasks, function (task, callback) {
 });
 ```
 
-See [the API Documentation](shenanigans.github.io/node-filth/docs/module/filth/index.html)
+See [the API Documentation](http://shenanigans.github.io/node-filth/docs/module/filth/index.html)
 for more information.
 
 
