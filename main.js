@@ -1,5 +1,5 @@
 
-/**     @module filth
+/*      @module filth
     Simple utility methods and primitives. Typecheck with ease, merge and compare Objects, inherit
     from a class, lock resources, and batch frequent function calls.
 
@@ -9,7 +9,7 @@
     own classes.
 */
 
-/**     @class SafeMap
+/*      @class SafeMap
     An Object with no own properties or property name caveats. Much like `new Object (null)` but
     solves the remaining issues with `__proto__`.
 @argument/Object source
@@ -47,7 +47,7 @@ function FakeSafeMap (source) {
 FakeSafeMap.prototype = null;
 
 
-/**     @property/Function getTypeStr
+/*      @property/Function getTypeStr
     Gets a proper type name for a reference, in all lowercase, by exploiting the native string
     representation mechanism. Some possible values:
      * object
@@ -84,7 +84,7 @@ function getTypeStr (obj) {
 }
 
 
-/**     @property/Function clone
+/*      @property/Function clone
     Create a JSON-identical duplicate of a reference with no refs in common.
 @argument obj
     One argument of any JSON-compatible type to be cloned.
@@ -119,7 +119,7 @@ function clone (target) {
 }
 
 
-/**     @property/Function merge
+/*      @property/Function merge
     Overwrite properties on an object with those of another object, recursing into Objects. Source
     Arrays are appended to target Arrays. Whenever `source` and `target` or values found within them
     have different types, the `source` value overwrites the 'target' value.
@@ -150,9 +150,9 @@ function merge (target, source) {
 }
 
 
-/**     @property/Function inherit
+/*      @property/Function inherit
     Perform a simple prototype inheritence operation to cause the first argument to inherit from the
-    last. Unlike [util.inherts]() the child prototype's own properties are copied over, so you can
+    last. Unlike [util.inherits]() the child prototype's own properties are copied over, so you can
     call `inherit` after setting up the prototype on `child` without anything getting left behind.
 @argument/Function child
     The class which will inherit from `parent`. Its prototype will be replaced with one chained to
@@ -174,7 +174,7 @@ function inherit (child, parent) {
 }
 
 
-/**     @property/Function createChild
+/*      @property/Function createChild
     A non-destructive version of [inherit](.inherit). Creates a **new** class from `child` which
     inherits from `parent`.
 @argument/Function child
@@ -197,7 +197,7 @@ function createChild (child, parent) {
 }
 
 
-/**     @property/Function compare
+/*      @property/Function compare
     Determine whether two JSON Objects are identical. Object key ordering is not considered.
 @argument/Object objA
 @argument/Object objB
@@ -230,7 +230,7 @@ function compare (objA, objB) {
     return true;
 }
 
-/**     @property/Function compareArrays
+/*      @property/Function compareArrays
     Determine whether two JSON Arrays are recursively identical. Key ordering in child Objects is
     not considered.
 @argument/Array arrA
@@ -260,7 +260,7 @@ function compareArrays (arrA, arrB) {
     return true;
 }
 
-/**     @property/Function hrDiff
+/*      @property/Function hrDiff
     Return the difference between two [high-resolution timestamps](process.hrtime) as integer
     microseconds. This is suitable for latencies up to roughly 285 years 224 days.
 */
@@ -270,7 +270,7 @@ function hrDiff (start, end) {
     return micro;
 }
 
-/**     @property/class LatencyLogger
+/*      @property/class LatencyLogger
     An easy logging tool for tracking the myriad latencies of a long serial process and reporting
     them all at once.
 */
@@ -280,7 +280,7 @@ function LatencyLogger (latencies) {
     this.latencies.total = 0;
 }
 
-/**     @member/Function latency
+/*      @member/Function latency
     Log a latency number in integer microseconds relative to the last latency logged. Latencies can
     **not** be overwitten. Call with no `name` to set the start time for the next logged latency
     without logging anything this time.
@@ -305,7 +305,7 @@ LatencyLogger.prototype.latency = function (name) {
 };
 
 
-/**     @member/Function getFinalLatency
+/*      @member/Function getFinalLatency
     Generate the final latency figure relative to a provided initial time, add it to the latencies
     under the property name `total`, then return the entire latency map.
 @returns/Object<String, Number> latencies
@@ -317,7 +317,7 @@ LatencyLogger.prototype.getFinalLatency = function(){
     return this.latencies;
 };
 
-/**     @property/class Lock
+/*      @property/class Lock
     A simple lock for `width` users. Calls to `take` queue up until a slot to process them is
     available within the lock's width. Does not implement a timeout so it's up to you to worry about
     ensuring that `free` always gets called.
@@ -332,7 +332,7 @@ function Lock (width) {
     this.isPaused = false;
 };
 
-/**     @member/Function .Lock#take
+/*      @member/Function .Lock#take
     Fires a callback when a slot is available within the [lock width](.Lock(width).
 @callback
 */
@@ -345,7 +345,7 @@ Lock.prototype.take = function (callback) {
     this.queue.push (callback);
 };
 
-/**     @member/Function .Lock#free
+/*      @member/Function .Lock#free
     Release the lock, permitting the next callback in the queue to fire.
 */
 Lock.prototype.free = function(){
@@ -355,7 +355,7 @@ Lock.prototype.free = function(){
         process.nextTick (this.queue.shift());
 };
 
-/**     @member/Function .Lock#pause
+/*      @member/Function .Lock#pause
     Stop firing new callbacks from the queue until [play](.Lock#play) is called.
 */
 Lock.prototype.pause = function(){
@@ -370,7 +370,7 @@ Lock.prototype.clear = function(){
     this.queue = [];
 };
 
-/**     @member/Function .Lock#play
+/*      @member/Function .Lock#play
     Start firing new callbacks from the queue again after [pause](.Lock#pause) was called.
 */
 Lock.prototype.play = function(){
