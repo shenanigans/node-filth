@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>filth#latency documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../index.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../highlight.css" />
+    <script type="text/javascript" src="../../../../index.js"></script>
+</head>
+<body class="member" id="component_917">
+    <div id="outer">
+        <div id="header">
+            
+            
+            
+            
+            
+            <a class="ctype" href="../../../../index.html">member</a>
+            <span>
+                    <a class="valtype" href="../../../../property/function/index.html">Function</a>
+                    
+                    <span class="valsep">|</span>
+                
+            </span>
+            <span class="breadcrumbs">
+                <span class="delimiter">/</span><a href="../../index.html" class="breadcrumb ">filth</a><span class="delimiter">#</span><a href="index.html" class="breadcrumb ">latency</a>
+            </span>
+        </div>
+<div id="TOC">
+            <div class="section">
+                <h4 class="header"><a href="#arguments">Arguments</a></h4>
+                    <a href="#component_914">name</a><br />
+            </div>
+</div>
+        <div id="content">
+                <h1 class="signature">
+                    latency (
+<div class="argument">
+    <span class="optionBracket">[</span>
+    
+        <span>
+            <span class="valsep punctuation">|</span>
+            <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+            
+        </span>
+        <a class="title" href="#component_914">
+            name
+        </a>
+    <span class="optionBracket">]</span>
+    <span class="comma">,</span>
+</div>
+                    ) {
+                </h1>
+            <!-- basic document info -->
+            <div id="details">
+                        <div class="markdown"><p>Log a latency number in integer microseconds relative to the last latency logged. Latencies can
+<strong>not</strong> be overwitten. Call with no <code>name</code> to set the start time for the next logged latency
+without logging anything this time.</p>
+</div>
+                <div class="clear"></div>
+                        <h4>Arguments</h4>
+                        <div class="section arguments">
+                                <div class="child argument " id="component_914">
+<span class="signature">
+    
+        <div class="flag optional">optional</div>
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+            
+        </span>
+        <a class="name" href="index.html#component_914">
+            name
+        </a>
+    
+</span>
+                                    <div class="info">
+                                        <span class="markdown"><pre><code>The <span class="hljs-built_in">name</span> under which this latency should be logged. If no <span class="hljs-built_in">name</span> <span class="hljs-keyword">is</span> passed, <span class="hljs-keyword">or</span> <span class="hljs-keyword">the</span> passed <span class="hljs-built_in">name</span> has
+already been used, no latency <span class="hljs-keyword">is</span> logged <span class="hljs-keyword">but</span> <span class="hljs-keyword">the</span> start <span class="hljs-built_in">time</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> next logged latency <span class="hljs-keyword">is</span> still
+updated.
+
+Note <span class="hljs-keyword">that</span> any latency logged <span class="hljs-keyword">as</span> `total` will be overwritten when [getFinalLatency]
+(<span class="hljs-comment">#getFinalLatency) is called.</span>
+</code></pre><p>returns/Boolean written
+    Whether a latency value was stored. <code>false</code> when a name conflict occurs.</p>
+</span>
+                                    </div>
+                                </div>
+                        </div>
+            </div>
+<div class="children">
+    
+</div>
+        </div>
+    </div>
+    <div id="footer">
+        This document was generated with
+        <a href="https://github.com/shenanigans/node-doczar">doczar</a>
+        at <span class="time">5:40pm</span> on <span class="date">8/25/2016</span>
+    </div>
+</body>
+</html>

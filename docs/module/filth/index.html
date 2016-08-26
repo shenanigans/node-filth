@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>filth documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../index.css" />
+    <link rel="stylesheet" type="text/css" href="../../highlight.css" />
+    <script type="text/javascript" src="../../index.js"></script>
+</head>
+<body class="module" id="component_926">
+    <div id="outer">
+        <div id="header">
+            
+            
+            
+            
+            
+            <a class="ctype" href="../../index.html">module</a>
+            <span>
+                
+            </span>
+            <span class="breadcrumbs">
+                <span class="delimiter">/</span><a href="index.html" class="breadcrumb ">filth</a>
+            </span>
+        </div>
+<div id="TOC">
+        <div class="section">
+            <h4 class="header"><a href="#statics">Static Properties</a></h4>
+                <a href="#component_834">SafeMap</a><br />
+                <a href="#component_889">LatencyLogger</a><br />
+                <a href="#component_911">Lock</a><br />
+        </div>
+        <div class="section">
+            <h4 class="header"><a href="#functions">Static Functions</a></h4>
+                <a href="#component_848">clone</a><br />
+                <a href="#component_877">compare</a><br />
+                <a href="#component_883">compareArrays</a><br />
+                <a href="#component_871">createChild</a><br />
+                <a href="#component_838">getTypeStr</a><br />
+                <a href="#component_886">hrDiff</a><br />
+                <a href="#component_862">inherit</a><br />
+                <a href="#component_853">merge</a><br />
+                <a href="#component_838">typeof</a><br />
+        </div>
+        <div class="section">
+            <h4 class="header"><a href="#methods">Methods</a></h4>
+                <a href="#component_923">getFinalLatency</a><br />
+                <a href="#component_917">latency</a><br />
+        </div>
+</div>
+        <div id="content">
+            <!-- basic document info -->
+            <div id="details">
+                        <div class="markdown"><p>Simple utility methods and primitives. Typecheck with ease, merge and compare Objects, inherit
+from a class, lock resources, and batch frequent function calls.</p>
+<p>Browserify users frequenty define their own version of <code>util.inherits</code> because the full
+browser-compatible <code>util</code> module is quite large and contains a lot of things almost nobody uses.
+<code>filth</code> is a lightweight way to access inheritence without rewriting <code>inherits</code> or rolling your
+own classes.</p>
+</div>
+                <div class="clear"></div>
+            </div>
+<div class="children">
+    
+    
+        <!-- static properties -->
+        <h2 id="statics" class="header">Static Properties</h2>
+        <div class="section properties">
+<div id="component_834" class="child class">
+    <span class="signature">
+        <span>
+                <a class="valtype">class</a>
+        </span>
+        
+            <span class="ctype">class</span>
+        
+        <a class="title" href="property/safemap/index.html">SafeMap</a>
+    </span>
+    <div class="info">
+<span class="markdown"><p>An Object with no own properties or property name caveats. Much like <code>new Object (null)</code> but
+solves the remaining issues with <code>__proto__</code>.</p>
+</span>
+        
+    </div>
+</div>
+<div id="component_889" class="child property">
+    <span class="signature">
+        <span>
+                <a class="valtype">class</a>
+        </span>
+        
+        <a class="title" href="index.html#component_889">LatencyLogger</a>
+    </span>
+    <div class="info">
+<span class="markdown"><p>An easy logging tool for tracking the myriad latencies of a long serial process and reporting
+them all at once.</p>
+</span>
+        
+    </div>
+</div>
+<div id="component_911" class="child property">
+    <span class="signature">
+        <span>
+                <a class="valtype">class</a>
+        </span>
+        
+        <a class="title" href="property/lock/index.html">Lock</a>
+    </span>
+    <div class="info">
+<span class="markdown"><p>A simple lock for <code>width</code> users. Calls to <code>take</code> queue up until a slot to process them is
+available within the lock&#39;s width. Does not implement a timeout so it&#39;s up to you to worry about
+ensuring that <code>free</code> always gets called.</p>
+</span>
+        
+    </div>
+</div>
+        </div>
+        <!-- static functions -->
+        <h2 id="functions" class="header">Static Functions</h2>
+        <div class="section properties">
+<div id="component_848" class="child function">
+    <span class="signature">
+        <span>
+            <span class="valsep">,</span>
+            <span class="types"></span>
+        </span>
+        <a href="property/clone/index.html" class="title">
+            clone
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_842">
+            obj
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Create a JSON-identical duplicate of a reference with no refs in common.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_842">
+<span class="signature">
+    
+    
+        <span></span>
+        <a class="name" href="property/clone/index.html#component_842">
+            obj
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"><p>One argument of any JSON-compatible type to be cloned.</p>
+</span>
+                        </div>
+                    </div>
+            </div>
+            <h4>Returns</h4>
+            <div class="section returns">
+                <div class="return">
+<div id="component_845" class="child returns">
+    <span class="signature">
+        <span>
+        </span>
+        
+        <a class="title" href="property/clone/index.html#component_845">newObj</a>
+    </span>
+    <div class="info">
+<span class="markdown"><p>A new object which is json-identical to <code>obj</code> (<a href="property/compare/index.html"><code>compare</code></a> will return <code>true</code>) but
+shares no common Object or Array instances.</p>
+</span>
+        
+    </div>
+</div>
+                </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_877" class="child function">
+    <span class="signature">
+        <span>
+            <span class="valsep">,</span>
+            <span class="types">
+                <span class="valsep punctuation">|</span>
+                <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+            </span>
+        </span>
+        <a href="property/compare/index.html" class="title">
+            compare
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_872">
+            objA
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            
+<div class="argument">
+    
+    
+        <a class="title" href="#component_873">
+            objB
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Determine whether two JSON Objects are identical. Object key ordering is not considered.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_872">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/object/index.html">Object</a>
+            
+        </span>
+        <a class="name" href="property/compare/index.html#component_872">
+            objA
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+                    <div class="child argument " id="component_873">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/object/index.html">Object</a>
+            
+        </span>
+        <a class="name" href="property/compare/index.html#component_873">
+            objB
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+            </div>
+            <h4>Returns</h4>
+            <div class="section returns">
+                <div class="return">
+<div id="component_874" class="child returns">
+    <span class="signature">
+        <span>
+                    <span class="valsep">|</span>
+                    <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+                    
+        </span>
+        
+        <a class="title" href="property/compare/index.html#component_874"></a>
+    </span>
+    <div class="info">
+<span class="markdown"></span>
+        
+    </div>
+</div>
+                </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_883" class="child function">
+    <span class="signature">
+        <span>
+            <span class="valsep">,</span>
+            <span class="types">
+                <span class="valsep punctuation">|</span>
+                <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+            </span>
+        </span>
+        <a href="property/comparearrays/index.html" class="title">
+            compareArrays
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_878">
+            arrA
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            
+<div class="argument">
+    
+    
+        <a class="title" href="#component_879">
+            arrB
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Determine whether two JSON Arrays are recursively identical. Key ordering in child Objects is
+not considered.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_878">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/array/index.html">Array</a>
+            
+        </span>
+        <a class="name" href="property/comparearrays/index.html#component_878">
+            arrA
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+                    <div class="child argument " id="component_879">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/array/index.html">Array</a>
+            
+        </span>
+        <a class="name" href="property/comparearrays/index.html#component_879">
+            arrB
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+            </div>
+            <h4>Returns</h4>
+            <div class="section returns">
+                <div class="return">
+<div id="component_880" class="child returns">
+    <span class="signature">
+        <span>
+                    <span class="valsep">|</span>
+                    <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a>
+                    
+        </span>
+        
+        <a class="title" href="property/comparearrays/index.html#component_880"></a>
+    </span>
+    <div class="info">
+<span class="markdown"></span>
+        
+    </div>
+</div>
+                </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_871" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="property/createchild/index.html" class="title">
+            createChild
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_865">
+            child
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            
+<div class="argument">
+    
+    
+        <a class="title" href="#component_868">
+            parent
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>A non-destructive version of <a href="property/inherit/index.html"><code>inherit</code></a>. Creates a <strong>new</strong> class from <code>child</code> which
+inherits from <code>parent</code>.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_865">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/function/index.html">Function</a>
+            
+        </span>
+        <a class="name" href="property/createchild/index.html#component_865">
+            child
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"><p>The class which will be copied before inheriting from <code>parent</code>.</p>
+</span>
+                        </div>
+                    </div>
+                    <div class="child argument " id="component_868">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/function/index.html">Function</a>
+            
+        </span>
+        <a class="name" href="property/createchild/index.html#component_868">
+            parent
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"><p>The class which will modify <code>child</code>.</p>
+</span>
+                        </div>
+                    </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_838" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="property/gettypestr/index.html" class="title">
+            getTypeStr
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_835">
+            obj
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Gets a proper type name for a reference, in all lowercase, by exploiting the native string
+representation mechanism. Some possible values:</p>
+<ul>
+<li>object</li>
+<li>array</li>
+<li>buffer</li>
+<li>string</li>
+<li>boolean</li>
+<li>number</li>
+<li>function</li>
+<li>element</li>
+<li>textnode</li>
+<li>commentnode</li>
+<li>nodelist</li>
+<li>htmlcollection</li>
+<li>htmldocument</li>
+</ul>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_835">
+<span class="signature">
+    
+    
+        <span></span>
+        <a class="name" href="property/gettypestr/index.html#component_835">
+            obj
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_886" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="index.html#component_886" class="title">
+            hrDiff
+        </a>
+        (
+            <span></span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Return the difference between two <a href="https://nodejs.org/api/process.html#process_process_hrtime"><code>high-resolution timestamps</code></a> as integer
+microseconds. This is suitable for latencies up to roughly 285 years 224 days.</p>
+</span>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_862" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="property/inherit/index.html" class="title">
+            inherit
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_856">
+            child
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            
+<div class="argument">
+    
+    
+        <a class="title" href="#component_859">
+            parent
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Perform a simple prototype inheritence operation to cause the first argument to inherit from the
+last. Unlike <a href="javascript:return false;"><code>util.inherits</code></a> the child prototype&#39;s own properties are copied over, so you can
+call <code>inherit</code> after setting up the prototype on <code>child</code> without anything getting left behind.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_856">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/function/index.html">Function</a>
+            
+        </span>
+        <a class="name" href="property/inherit/index.html#component_856">
+            child
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"><p>The class which will inherit from <code>parent</code>. Its prototype will be replaced with one chained to
+<code>parent</code> and own properties will be transfered over.</p>
+</span>
+                        </div>
+                    </div>
+                    <div class="child argument " id="component_859">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/function/index.html">Function</a>
+            
+        </span>
+        <a class="name" href="property/inherit/index.html#component_859">
+            parent
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"><p>The class which will modify <code>child</code>. It is used to generate a new prototype for <code>child</code> which is
+chained to <code>parent</code> and its ancestors.</p>
+</span>
+                        </div>
+                    </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_853" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="property/merge/index.html" class="title">
+            merge
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_849">
+            target
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            
+<div class="argument">
+    
+    
+        <a class="title" href="#component_850">
+            source
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Overwrite properties on an object with those of another object, recursing into Objects. Source
+Arrays are appended to target Arrays. Whenever <code>source</code> and <code>target</code> or values found within them
+have different types, the <code>source</code> value overwrites the &#39;target&#39; value.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_849">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/object/index.html">Object</a>
+            
+        </span>
+        <a class="name" href="property/merge/index.html#component_849">
+            target
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+                    <div class="child argument " id="component_850">
+<span class="signature">
+    
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="../../property/object/index.html">Object</a>
+            
+        </span>
+        <a class="name" href="property/merge/index.html#component_850">
+            source
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_839" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="property/gettypestr/index.html" class="title">
+            typeof
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    
+        <a class="title" href="#component_835">
+            obj
+        </a>
+    
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Gets a proper type name for a reference, in all lowercase, by exploiting the native string
+representation mechanism. Some possible values:</p>
+<ul>
+<li>object</li>
+<li>array</li>
+<li>buffer</li>
+<li>string</li>
+<li>boolean</li>
+<li>number</li>
+<li>function</li>
+<li>element</li>
+<li>textnode</li>
+<li>commentnode</li>
+<li>nodelist</li>
+<li>htmlcollection</li>
+<li>htmldocument</li>
+</ul>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_835">
+<span class="signature">
+    
+    
+        <span></span>
+        <a class="name" href="property/gettypestr/index.html#component_835">
+            obj
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"></span>
+                        </div>
+                    </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+        </div>
+        <!-- methods -->
+        <h2 id="methods" class="header">Methods</h2>
+        <div class="section members">
+<div id="component_923" class="child function">
+    <span class="signature">
+        <span>
+            <span class="valsep">,</span>
+            <span class="types">
+                <span class="valsep punctuation">|</span>
+                <a class="valtype" href="../../property/object/index.html">Object</a>
+                    <span class="punctuation">&lt;</span>
+                    <span>
+                        <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+                        <span class="valsep">,</span>
+                    
+                        <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+                        <span class="valsep">,</span>
+                    </span>
+                    <span class="punctuation">&gt;</span>
+            </span>
+        </span>
+        <a href="member/getfinallatency/index.html" class="title">
+            getFinalLatency
+        </a>
+        (
+            <span></span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Generate the final latency figure relative to a provided initial time, add it to the latencies
+under the property name <code>total</code>, then return the entire latency map.</p>
+</span>
+            <h4>Returns</h4>
+            <div class="section returns">
+                <div class="return">
+<div id="component_920" class="child returns">
+    <span class="signature">
+        <span>
+                    <span class="valsep">|</span>
+                    <a class="valtype" href="../../property/object/index.html">Object</a>
+                    
+                        &lt;
+                        <span>
+                            <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+                            <span class="valsep">,</span>
+                        
+                            <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+                            <span class="valsep">,</span>
+                        </span>
+                        &gt;
+        </span>
+        
+        <a class="title" href="member/getfinallatency/index.html#component_920">latencies</a>
+    </span>
+    <div class="info">
+<span class="markdown"><p>A map of logged latency names against the integer microsecond duration of each latency.</p>
+</span>
+        
+    </div>
+</div>
+                </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+<div id="component_917" class="child function">
+    <span class="signature">
+        <span></span>
+        <a href="member/latency/index.html" class="title">
+            latency
+        </a>
+        (
+            <span>
+<div class="argument">
+    
+    <span class="optionBracket">[</span>
+        <a class="title" href="#component_914">
+            name
+        </a>
+    <span class="optionBracket">]</span>
+    <span class="comma">,</span>
+</div>
+            </span>
+        ) {
+    </span>
+    <div class="info">
+        <span class="markdown"><p>Log a latency number in integer microseconds relative to the last latency logged. Latencies can
+<strong>not</strong> be overwitten. Call with no <code>name</code> to set the start time for the next logged latency
+without logging anything this time.</p>
+</span>
+            <h4>Arguments</h4>
+            <div class="section arguments">
+                    <div class="child argument " id="component_914">
+<span class="signature">
+    
+        <div class="flag optional">optional</div>
+    
+        <span>
+            <span class="valsep punctuation punctuation">|</span>
+            <a class="valtype" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a>
+            
+        </span>
+        <a class="name" href="member/latency/index.html#component_914">
+            name
+        </a>
+    
+</span>
+                        <div class="info">
+                            <span class="markdown"><pre><code>The <span class="hljs-built_in">name</span> under which this latency should be logged. If no <span class="hljs-built_in">name</span> <span class="hljs-keyword">is</span> passed, <span class="hljs-keyword">or</span> <span class="hljs-keyword">the</span> passed <span class="hljs-built_in">name</span> has
+already been used, no latency <span class="hljs-keyword">is</span> logged <span class="hljs-keyword">but</span> <span class="hljs-keyword">the</span> start <span class="hljs-built_in">time</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> next logged latency <span class="hljs-keyword">is</span> still
+updated.
+
+Note <span class="hljs-keyword">that</span> any latency logged <span class="hljs-keyword">as</span> `total` will be overwritten when [getFinalLatency]
+(<span class="hljs-comment">#getFinalLatency) is called.</span>
+</code></pre><p>returns/Boolean written
+    Whether a latency value was stored. <code>false</code> when a name conflict occurs.</p>
+</span>
+                        </div>
+                    </div>
+            </div>
+        <div class="tail" /></div>
+    </div>
+</div>
+        </div>
+</div>
+        </div>
+    </div>
+    <div id="footer">
+        This document was generated with
+        <a href="https://github.com/shenanigans/node-doczar">doczar</a>
+        at <span class="time">5:40pm</span> on <span class="date">8/25/2016</span>
+    </div>
+</body>
+</html>
