@@ -27,10 +27,12 @@ function SafeMap (source) {
         }
     }
 }
-SafeMap.prototype = JSON.parse ('{"__proto__":null}');
-SafeMap.prototype.__proto__ = undefined;
 if (Object.defineProperty)
-    Object.defineProperty (SafeMap.prototype, '__proto__', { enumerable:false });
+    Object.defineProperty (
+        SafeMap.prototype,
+        '__proto__',
+        { enumerable:false, writable:true, value:undefined }
+    );
 
 // for use with IE 10 and below, which have no __proto__
 function FakeSafeMap (source) {
