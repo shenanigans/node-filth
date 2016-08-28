@@ -1,6 +1,6 @@
 {
     "name":     "filth",
-    "version":  "0.1.0",
+    "version":  "0.1.1",
     "license":  "MIT",
     "description": "Yet another simple tools library.",
     "author":   "Kevin \"Schmidty\" Smith <shenanigans@kaztl.com>",
