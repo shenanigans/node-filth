@@ -1,8 +1,16 @@
 {
     "name":     "filth",
-    "version":  "0.1.1",
+    "version":  "0.1.2",
     "license":  "MIT",
-    "description": "Yet another simple tools library.",
     "author":   "Kevin \"Schmidty\" Smith <shenanigans@kaztl.com>",
-    "main":     "main.js"
+    "description": "Yet another simple tools library.",
+    "keywords": [ "utilities", "utils", "util", "tools", "inherit", "inherits" ],
+    "main":     "main.js",
+    "repository": {
+        "type":     "git",
+        "url":      "https://github.com/shenanigans/node-filth"
+    },
+    "bugs":     {
+        "url":      "https://github.com/shenanigans/node-filth/issues"
+    }
 }

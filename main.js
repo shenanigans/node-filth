@@ -10,8 +10,9 @@
 */
 
 /*      @class SafeMap
-    An Object with no own properties or property name caveats. Much like `new Object (null)` but
-    solves the remaining issues with `__proto__`.
+    Constructs an Object with no own properties or property name caveats. Optionally shallow copies
+    a source Object. A convenient and browser-safe way to convert Object literals to null-prototype
+    Objects.
 @argument/Object source
     @optional
     An Object to shallow copy into the new `SafeMap` instance.
@@ -27,26 +28,16 @@ function SafeMap (source) {
         }
     }
 }
-if (Object.defineProperty)
+if (Object.create)
+    SafeMap.prototype = Object.create (null);
+else if (Object.defineProperty)
     Object.defineProperty (
         SafeMap.prototype,
         '__proto__',
         { enumerable:false, writable:true, value:undefined }
     );
-
-// for use with IE 10 and below, which have no __proto__
-function FakeSafeMap (source) {
-    if (!(this instanceof FakeSafeMap))
-        return new FakeSafeMap (source);
-    if (source) {
-        var keys = Object.keys (source);
-        for (var i=0,j=keys.length; i<j; i++) {
-            var key = keys[i];
-            this[key] = source[key];
-        }
-    }
-}
-FakeSafeMap.prototype = null;
+else
+    SafeMap.prototype = null;
 
 
 /*      @property/Function getTypeStr
@@ -272,7 +263,7 @@ function hrDiff (start, end) {
     return micro;
 }
 
-/*      @property/class LatencyLogger
+/*
     An easy logging tool for tracking the myriad latencies of a long serial process and reporting
     them all at once.
 */
@@ -282,10 +273,10 @@ function LatencyLogger (latencies) {
     this.latencies.total = 0;
 }
 
-/*      @member/Function latency
-    Log a latency number in integer microseconds relative to the last latency logged. Latencies can
-    **not** be overwitten. Call with no `name` to set the start time for the next logged latency
-    without logging anything this time.
+/*
+    Log a latency number in integer microseconds relative to the last latency logged. Calling with
+    no `name` argument will reset the start time for the next logged latency. Multiple calls with
+    the same `name` will be added together to produce a total latency for the name.
 @argument/String name
     @optional
     The name under which this latency should be logged. If no name is passed, or the passed name has
@@ -300,14 +291,22 @@ returns/Boolean written
 LatencyLogger.prototype.latency = function (name) {
     var then = this.latencyTime;
     var now = this.latencyTime = process.hrtime();
-    if (!name || Object.hasOwnProperty.call (this.latencies, name))
+    if (!name)
         return false;
-    this.latencies[name] = filth.hrDiff (then, now);
+    if (Object.hasOwnProperty.call (this.latencies, name))
+        this.latencies[name] += hrDiff (then, now);
+    else
+        this.latencies[name] = hrDiff (then, now);
     return true;
 };
 
+/*      @member/Function LatencyLogger#log
+    @alias filth.LatencyLogger#latency
+*/
+LatencyLogger.prototype.log = LatencyLogger.prototype.latency;
 
-/*      @member/Function getFinalLatency
+
+/*
     Generate the final latency figure relative to a provided initial time, add it to the latencies
     under the property name `total`, then return the entire latency map.
 @returns/Object<String, Number> latencies
@@ -315,11 +314,11 @@ LatencyLogger.prototype.latency = function (name) {
 */
 LatencyLogger.prototype.getFinalLatency = function(){
     if (!this.latencies.total)
-        this.latencies.total = filth.hrDiff (this.start, process.hrtime());
+        this.latencies.total = hrDiff (this.start, process.hrtime());
     return this.latencies;
 };
 
-/*      @property/class Lock
+/*
     A simple lock for `width` users. Calls to `take` queue up until a slot to process them is
     available within the lock's width. Does not implement a timeout so it's up to you to worry about
     ensuring that `free` always gets called.
@@ -385,7 +384,7 @@ Lock.prototype.play = function(){
 
 module.exports.getTypeStr    = getTypeStr;
 module.exports.typeof        = getTypeStr;
-module.exports.SafeMap       = ({}).__proto__ ? SafeMap : FakeSafeMap;
+module.exports.SafeMap       = SafeMap;
 module.exports.clone         = clone;
 module.exports.deepCopy      = clone;
 module.exports.merge         = merge;
